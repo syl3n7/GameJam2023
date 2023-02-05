@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d6f63d71f438dfb48934d102f6732cc2
+guid: f9bc6dd452cf0ce4985104493c10f0f3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,22 +107,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Relva_0
+      name: Placa_Vitoria_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 188
-        width: 1920
-        height: 45
+        x: 581
+        y: 492
+        width: 668
+        height: 312
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e3278fa798ae3848b22bb91bac6300c
-      internalID: -282653853
+      spriteID: fd80d7459d477a74db6f71d971df1078
+      internalID: -1231035740
       vertices: []
       indices: 
       edges: []
@@ -138,8 +138,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Relva_0: -282653853
-      Relva_1: 557214263
+      Placa_Vitoria_0: -1231035740
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
