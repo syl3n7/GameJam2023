@@ -1,10 +1,16 @@
 using UnityEngine;
 using DG.Tweening;
+using System.Collections.Generic;
+using System.Collections;
 
 public class UIAnimations : MonoBehaviour
 {
-    public RectTransform[] rectCards;
-    public GameObject[] removeCard;
+    public List<RectTransform> rectCards = new List<RectTransform>();
+    public List<RectTransform> removeCards = new List<RectTransform>();
+
+    public RectTransform panel;
+
+    private int hearts = 3;
 
     private void Start()
     {
@@ -12,16 +18,14 @@ public class UIAnimations : MonoBehaviour
         {
             card.transform.localPosition = new Vector3(0f, 1000f, 0f);
         }
+
+        panel.transform.localPosition = new Vector3(579f, -1000f, 0f);
     }
 
     public void Play()
     {
         CardsAnimation();
-    }
-
-    public void RandomRemove()
-    {
-        Remove();
+        Panel();
     }
 
     private void CardsAnimation()
@@ -47,17 +51,53 @@ public class UIAnimations : MonoBehaviour
         });
     }
 
-    private void Remove()
+    public void Remove()
     {
-        for(int indexNumber = Random.Range(0, rectCards.Length); indexNumber < 3;)
+        hearts--;
+
+        if (hearts > 0)
         {
-            Debug.Log(rectCards[indexNumber].name);
+            StartCoroutine("Shake");
         }
 
-
-        /*for (var randomCardNumber = 0; randomCardNumber < 3; randomCardNumber++)
+        if (hearts <= 0)
         {
-            rectCards[randomCardNumber].DOAnchorPos(new Vector2(0f, -1000f), .5f, false).SetEase(Ease.InOutSine);
-        }*/
+            StartCoroutine("Defeat");
+        }
+    }
+
+    private void Panel()
+    {
+        panel.DOAnchorPos(new Vector2(579f, -178f), .5f, false).SetEase(Ease.InOutSine);
+    }
+
+    IEnumerator Shake()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            int indexNumber = Random.Range(0, removeCards.Count);
+            removeCards[indexNumber].DOShakePosition(.1f, 20f);
+            yield return new WaitForSeconds(.1f);
+            removeCards[indexNumber].DOAnchorPos(new Vector2(0f, -1000f), .5f, false).SetEase(Ease.InOutSine);
+            removeCards.RemoveAt(indexNumber);
+        }
+        yield return null;
+    }
+
+    IEnumerator Defeat()
+    {
+        for (int i = 0; i < removeCards.Count; i++)
+        {
+            removeCards[i].DOShakePosition(.1f, 20f);
+            yield return new WaitForSeconds(.1f);
+            removeCards[i].DOAnchorPos(new Vector2(0f, -1000f), .5f, false).SetEase(Ease.InOutSine);
+        }
+
+        yield return new WaitForSeconds(.5f);
+
+        rectCards[13].DOShakePosition(.5f, 10f);
+        yield return new WaitForSeconds(.5f);
+        rectCards[13].DORotate(new Vector3(0f, 0f, 360f), .5f, RotateMode.FastBeyond360).SetLoops(5,LoopType.Restart).SetEase(Ease.Linear);
+        rectCards[13].DOScale(new Vector3(0f, 0f, 0f), 2f);
     }
 }
