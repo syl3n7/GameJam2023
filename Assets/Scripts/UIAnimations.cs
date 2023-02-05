@@ -8,7 +8,8 @@ public class UIAnimations : MonoBehaviour
     public List<RectTransform> rectCards = new List<RectTransform>();
     public List<RectTransform> removeCards = new List<RectTransform>();
 
-    public RectTransform panel;
+    public RectTransform panel, victoryPanel, defeatPanel, cardsPanel;
+    public CanvasGroup cards;
 
     private int hearts = 3;
 
@@ -20,6 +21,8 @@ public class UIAnimations : MonoBehaviour
         }
 
         panel.transform.localPosition = new Vector3(579f, -1000f, 0f);
+        victoryPanel.transform.localPosition = new Vector3(0f, -1200f, 0f);
+        defeatPanel.transform.localPosition = new Vector3(0f, -1200f, 0f);
     }
 
     public void Play()
@@ -71,6 +74,17 @@ public class UIAnimations : MonoBehaviour
         panel.DOAnchorPos(new Vector2(579f, -178f), .5f, false).SetEase(Ease.InOutSine);
     }
 
+    public void Restart()
+    {
+        hearts = 3;
+
+        rectCards[13].DOScale(new Vector3(1f, 1f, 1f), 0f);
+        panel.transform.localPosition = new Vector3(579f, -1000f, 0f);
+        CardsAnimation();
+        Panel();
+        defeatPanel.DOAnchorPos(new Vector2(0f, -1200f), .5f, false).SetEase(Ease.InOutSine);
+    }
+
     IEnumerator Shake()
     {
         for (int i = 0; i < 3; i++)
@@ -98,6 +112,16 @@ public class UIAnimations : MonoBehaviour
         rectCards[13].DOShakePosition(.5f, 10f);
         yield return new WaitForSeconds(.5f);
         rectCards[13].DORotate(new Vector3(0f, 0f, 360f), .5f, RotateMode.FastBeyond360).SetLoops(5,LoopType.Restart).SetEase(Ease.Linear);
-        rectCards[13].DOScale(new Vector3(0f, 0f, 0f), 2f);
+        rectCards[13].DOScale(new Vector3(0f, 0f, 0f), 2f).OnComplete(() =>
+        {
+            defeatPanel.DOAnchorPos(new Vector2(0f, 0f), .5f, false).SetEase(Ease.InOutSine).OnComplete(() =>
+            {
+                cards.alpha = 0;
+                foreach (var card in rectCards)
+                {
+                    card.transform.localPosition = new Vector3(0f, 1000f, 0f);
+                }
+            });
+        });
     }
 }

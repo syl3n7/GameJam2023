@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d6f63d71f438dfb48934d102f6732cc2
+guid: 45e0e151df37ce749b92c06eab26dc52
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,22 +107,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Relva_0
+      name: Placa_Derrota_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 188
-        width: 1920
-        height: 45
+        x: 576
+        y: 522
+        width: 661
+        height: 234
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e3278fa798ae3848b22bb91bac6300c
-      internalID: -282653853
+      spriteID: 09b6c4f0a8df8be41a81ae0ecbc584da
+      internalID: -344977877
       vertices: []
       indices: 
       edges: []
@@ -138,8 +138,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Relva_0: -282653853
-      Relva_1: 557214263
+      Placa_Derrota_0: -344977877
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
