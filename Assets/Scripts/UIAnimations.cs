@@ -7,6 +7,7 @@ public class UIAnimations : MonoBehaviour
 {
     public List<RectTransform> rectCards = new List<RectTransform>();
     public List<RectTransform> removeCards = new List<RectTransform>();
+    public List<RectTransform> discardCards = new List<RectTransform>();
 
     public RectTransform panel, victoryPanel, defeatPanel, cardsPanel;
     public CanvasGroup cards;
@@ -77,7 +78,11 @@ public class UIAnimations : MonoBehaviour
     public void Restart()
     {
         hearts = 3;
-
+        foreach (var item in discardCards)
+        {
+            removeCards.Add(item);
+        }
+        discardCards.Clear();
         rectCards[13].DOScale(new Vector3(1f, 1f, 1f), 0f);
         panel.transform.localPosition = new Vector3(579f, -1000f, 0f);
         CardsAnimation();
@@ -93,6 +98,7 @@ public class UIAnimations : MonoBehaviour
             removeCards[indexNumber].DOShakePosition(.1f, 20f);
             yield return new WaitForSeconds(.1f);
             removeCards[indexNumber].DOAnchorPos(new Vector2(0f, -1000f), .5f, false).SetEase(Ease.InOutSine);
+            discardCards.Add(removeCards[indexNumber]);
             removeCards.RemoveAt(indexNumber);
         }
         yield return null;
