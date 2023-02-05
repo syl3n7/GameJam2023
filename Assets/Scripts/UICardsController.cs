@@ -186,19 +186,6 @@ public class UICardsController : MonoBehaviour
     }
     #endregion
 
-    #region Card14
-    public void Card14Front()
-    {
-        cards[26].SetActive(true);
-        cards[27].SetActive(false);
-    }
-    public void Card14Back()
-    {
-        cards[26].SetActive(false);
-        cards[27].SetActive(true);
-    }
-    #endregion
-
     #region Card15
     public void Card15Front()
     {
