@@ -13,8 +13,8 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: steelchunk
-  productName: WhoAmI_GameJam2023
-  defaultCursor: {fileID: 0}
+  productName: QuemSouEu_GameJam2023
+  defaultCursor: {fileID: 2800000, guid: fa2de36452364e0a28cc708a2da023cd, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.067, g: 0.067, b: 0.067, a: 0.90588236}
   m_ShowUnitySplashScreen: 1
